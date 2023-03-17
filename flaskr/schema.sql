@@ -1,0 +1,20 @@
+DROP TABLE IF EXISTS user;
+DROP TABLE IF EXISTS post;
+
+-- 创建表， 用户数据存储到user表中，博客内容存储在post表中
+
+CREATE TABLE user (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    username TEXT UNIQUE NOT NULL,
+    password TEXT NOT NULL 
+);
+
+CREATE TABLE post (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    author_id INTEGER NOT NULL,
+    created TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    title TEXT NOT NULL,
+    body TEXT NOT NULL,
+    FOREIGN KEY (author_id) REFERENCES user (id)
+);
+
